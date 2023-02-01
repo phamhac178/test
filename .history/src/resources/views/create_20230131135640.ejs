@@ -1,0 +1,29 @@
+<form action="/thanhviens" method="POST">
+    <div class="form-group">
+        <label for="exampleInputEmail1">HoTen</label>
+        <input type="name" class="form-control" id="exampleInputEmail1" name="name" placeholder="ho và tên">
+        <label for="exampleInputEmail1">GioiTinh</label>
+        <input type="name" class="form-control" id="exampleInputEmail1" name="Date" placeholder="Giới Tính">
+        <label for="exampleInputEmail1">ngaySinh</label>
+        <input type="name" class="form-control" id="exampleInputEmail1" name="nationality" placeholder="nationality">
+        <label for="exampleInputEmail1">email</label>
+        <input type="name" class="form-control" id="exampleInputEmail1" name="stageName" placeholder="stageName">
+        <label for="exampleInputEmail1">SoDienThoai</label>
+        <input type="name" class="form-control" id="exampleInputEmail1" name="SoDienThoai" placeholder="SoDienThoai">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" id="close_form-biography">close</button>
+</form>
+<button class="btn btn-primary my-2" id="add_biography">add</button>
+
+<script>
+    $("#add_biography").click(function (e) {
+        e.preventDefault();
+        $(".form_add-biography").toggle();
+    })
+
+    $("#close_form-biography").click(function (e) {
+        e.preventDefault();
+        $(".form_add-biography").hide();
+    })
+</script>

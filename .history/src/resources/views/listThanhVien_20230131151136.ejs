@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <button class="btn btn-primary my-2" id="add_ThanhVien">add</button>
+    <% thanhviens.forEach(function(thanhvien) { %>
+        <div class="card">
+            <div class="card-body">
+                <div class="title">
+                    <h5 class="card-title">
+                        <%= thanhvien.hoTen %><br>
+                            <%= thanhvien.gioiTinh %><br>
+                                <%= thanhvien.ngaySinh %><br>
+                                    <%= thanhvien.soDienThoai %><br>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <!-- sửa  -->
+        <div class="form_update-ThanhVien container mb-5" style="display: none; position: pixed; ">
+            <form action="/api/thanhviens" method="POST">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">hoTen</label>
+                    <input type="name" class="form-control" id="exampleInputEmail1" name="hoTen" 
+                        placeholder="ho và tên">
+                    <label for="exampleInputEmail1">gioiTinh</label>
+                    <input type="name" class="form-control" id="exampleInputEmail1" name="gioiTinh"
+                        placeholder="Giới Tính">
+                    <label for="exampleInputEmail1">ngaySinh</label>
+                    <input type="date" class="form-control" id="exampleInputEmail1" name="ngaySinh"
+                        placeholder="ngaySinh">
+                    <label for="exampleInputEmail1">email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="email">
+                    <label for="exampleInputEmail1">soDienThoai</label>
+                    <input type="name" class="form-control" id="exampleInputEmail1" name="soDienThoai"
+                        placeholder="soDienThoai">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" id="close_form-ThanhVien">close</button>
+            </form>
+        </div>
+        <button class="btn btn-primary my-2" id="update_ThanhVien">update</button>
+        <!-- sửa -->
+        <form action="/api/update" method="POST">
+            <input class="d-none" value="<%= thanhvien._id %>" name="id">
+        </form>
+        <!-- xóa -->
+        <form action="/api/delete" method="POST">
+            <input class="d-none" value="<%= thanhvien._id %>" name="id">
+            <button class="del btn btn-danger">Xóa</button>
+        </form>
+        <% }) %>
+            <!-- thêm  -->
+            <div class="form_add-ThanhVien container mb-5" style="display: none; position: pixed; ">
+                <form action="/api/thanhviens" method="POST">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">hoTen</label>
+                        <input type="name" class="form-control" id="exampleInputEmail1" name="hoTen"
+                            placeholder="ho và tên">
+                        <label for="exampleInputEmail1">gioiTinh</label>
+                        <input type="name" class="form-control" id="exampleInputEmail1" name="gioiTinh"
+                            placeholder="Giới Tính">
+                        <label for="exampleInputEmail1">ngaySinh</label>
+                        <input type="date" class="form-control" id="exampleInputEmail1" name="ngaySinh"
+                            placeholder="ngaySinh">
+                        <label for="exampleInputEmail1">email</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="email"
+                            placeholder="email">
+                        <label for="exampleInputEmail1">soDienThoai</label>
+                        <input type="name" class="form-control" id="exampleInputEmail1" name="soDienThoai"
+                            placeholder="soDienThoai">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="close_form-ThanhVien">close</button>
+                </form>
+            </div>
+            <script>
+                $("#add_ThanhVien").click(function (e) {
+                    e.preventDefault();
+                    $(".form_add-ThanhVien").toggle();
+                })
+                $("#update_ThanhVien").click(function (e) {
+                    e.preventDefault();
+                    $(".form_update-ThanhVien").toggle();
+                })
+
+                $("#close_form-ThanhVien").click(function (e) {
+                    e.preventDefault();
+                    $(".form_add-ThanhVien").hide();
+                })
+                $("#close_form-ThanhVien").click(function (e) {
+                    e.preventDefault();
+                    $(".form_update-ThanhVien").hide();
+                })
+            </script>
+
+</body>
+
+</html>
